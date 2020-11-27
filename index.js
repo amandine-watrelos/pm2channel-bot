@@ -4,17 +4,42 @@ const config = require("./config.json");
 const client = new Discord.Client();
 
 const prefix = "!";
+let channelRedirection = "";
 
 client.on("message", function(message) {
 
     if (message.author.bot) return;
 
-    const channel = client.channels.cache.find(channel => channel.name === "orga-event");
-    const author = message.author.username;
+    if (message.content.startsWith(prefix)) {
 
-    if (message.channel.type === "dm") {
-        channel.send(`**${author}** sent : ${message.content}`);
-        message.author.send("Message received!");
+        const commandBody = message.content.slice(prefix.length);
+        const args = commandBody.split(' ');
+        const command = args.shift().toLowerCase();
+        let response = "";
+
+        if (command === "channel") {
+            let channelArg = args[0];
+            const isChannelValid = client.channels.cache.find(channel => channel.name === channelArg) !== undefined ? true : false;
+
+            if (isChannelValid) {
+                response = `PMs are now redirected to **${channelArg}** channel.`;
+                channelRedirection = channelArg;
+            } else {
+                response = `The channel **${channelArg}** is not valid.`;
+            }
+
+            message.reply(response);
+        }
+
+    } else {
+
+        const channel = client.channels.cache.find(channel => channel.name === channelRedirection);
+        const author = message.author.username;
+
+        if (message.channel.type === "dm") {
+            channel.send(`**${author}** sent : ${message.content}`);
+            message.author.send("Message received!");
+        }
     }
 
 });
