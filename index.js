@@ -37,8 +37,12 @@ client.on("message", function(message) {
         const author = message.author.username;
 
         if (message.channel.type === "dm") {
-            channel.send(`**${author}** sent : ${message.content}`);
-            message.author.send("Message received!");
+            if (channel == undefined) {
+                message.author.send("Your message could not be sent : the redirection channel has not been specified.");
+            } else {
+                channel.send(`**${author}** sent : ${message.content}`);
+                message.author.send("Message received !");
+            }
         }
     }
 
