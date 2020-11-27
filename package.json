@@ -1,0 +1,14 @@
+{
+  "name": "pm2channel-bot",
+  "version": "1.0.0",
+  "description": "Discord bot to redirect PMs sent to the bot to a specific channel.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Amandine Watrelos",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.4.1"
+  }
+}
