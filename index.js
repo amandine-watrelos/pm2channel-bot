@@ -13,8 +13,8 @@ client.on("message", function(message) {
     const author = message.author.username;
 
     if (message.channel.type === "dm") {
-        channel.send(`**${author}** a envoyé : ${message.content}`);
-        message.author.send("Bien reçu!");
+        channel.send(`**${author}** sent : ${message.content}`);
+        message.author.send("Message received!");
     }
 
 });
