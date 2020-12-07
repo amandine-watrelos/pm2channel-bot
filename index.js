@@ -40,7 +40,8 @@ client.on("message", function(message) {
             if (channel == undefined) {
                 message.author.send("Your message could not be sent : the redirection channel has not been specified.");
             } else {
-                channel.send(`**${author}** sent : ${message.content}`);
+                //channel.send(`**${author}** sent : ${message.content}`);
+                channel.send(`:monkey_face: :monkey_face: ${message.content}`);
                 message.author.send("Message received !");
             }
         }
