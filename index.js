@@ -4,7 +4,7 @@ const config = require("./config/keys.js");
 const client = new Discord.Client();
 
 const prefix = "!";
-let channelRedirection = "";
+let channelRedirection = "gorille-cacahuete";
 
 client.on("message", function(message) {
 
@@ -19,7 +19,7 @@ client.on("message", function(message) {
 
         if (command === "channel") {
             let channelArg = args[0];
-            const isChannelValid = client.channels.cache.find(channel => channel.name === channelArg) !== undefined ? true : false;
+            const isChannelValid = client.channels.cache.find(channel => channel.name === channelArg) !== undefined;
 
             if (isChannelValid) {
                 response = `PMs are now redirected to **${channelArg}** channel.`;
@@ -37,7 +37,7 @@ client.on("message", function(message) {
         const author = message.author.username;
 
         if (message.channel.type === "dm") {
-            if (channel == undefined) {
+            if (channel === undefined) {
                 message.author.send("Your message could not be sent : the redirection channel has not been specified.");
             } else {
                 //channel.send(`**${author}** sent : ${message.content}`);
